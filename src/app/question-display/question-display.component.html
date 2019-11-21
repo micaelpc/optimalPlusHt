@@ -1,0 +1,17 @@
+<div class="display-question" fxAlign="center center">
+  <ng-container *ngIf="displayedQuestion">
+    <p>View Count:{{ displayedQuestion.viewCount }}</p>
+    <p>Score:{{ displayedQuestion.score }}</p>
+    <p fxHide.sm fxHide.xs >
+      Link:<a target="_blank" [href]="displayedQuestion.link">{{
+        displayedQuestion.link
+      }}</a>
+    </p>
+    <p fxHide.gt-sm>
+      Link:<a target="_blank" [href]="displayedQuestion.link">Click here</a>
+    </p>
+  </ng-container>
+  <div *ngIf="!displayedQuestion" fxAlign="center center">
+    <p>No Selected Question To Display</p>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div
+  fxLayoutGap="10px"
+  fxLayout="row"
+  fxFlex
+  fxLayoutAlign="center center">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      [(ngModel)]="searchString"
+      placeholder="Tag"
+      name="searchString"
+    />
+  </mat-form-field>
+
+  <button *ngIf="!isLoading" (click)="onSearchClick()" mat-raised-button [disabled]="!searchString" color="primary">
+    Search
+  </button>
+  <mat-spinner id="search-spinner" *ngIf="isLoading"></mat-spinner>
+</div>

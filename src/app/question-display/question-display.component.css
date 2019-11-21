@@ -1,0 +1,6 @@
+.display-question {
+    border: 3px solid slategray;
+    padding: 10px;
+    margin:10px;
+    border-radius: 20px;
+    height: calc(100% - 45px);}

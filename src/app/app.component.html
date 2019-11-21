@@ -1,0 +1,14 @@
+<div fxLayout="column" class="spa-wrapper" >
+  <mat-toolbar color="primary" fxLayout="row">
+    <span class="toolbar-title">OP Stackoverflow Viewer</span>
+  </mat-toolbar>
+  <div fxLayout.gt-sm="row" fxLayout.sm="column" fxLayout.xs="column" class="spa-content" fxFlex>
+    <div fxFlex="40%" class="question-retrieval" fxLayout="column">
+      <app-search-bar></app-search-bar>
+      <app-questions-list fxFlex></app-questions-list>
+    </div>
+    <div fxFlex>
+      <app-question-display fxFlex></app-question-display>
+    </div>
+  </div>
+</div>
