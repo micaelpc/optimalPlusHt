@@ -1,3 +1,9 @@
 <mat-action-list id="questions-list">
-        <button *ngFor="let question of questionsList" (click)="onQuestionSelect(question)"  mat-list-item> {{ question.title }} </button>
+  <button
+    *ngFor="let question of questionsList$ | async"
+    (click)="onQuestionSelect(question)"
+    mat-list-item
+  >
+    {{ question.title }}
+  </button>
 </mat-action-list>

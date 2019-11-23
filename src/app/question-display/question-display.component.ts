@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy} from '@angular/core';
 import { QuestionsService } from '../services/questions.service';
 import { Question } from '../model/question';
 
 @Component({
   selector: 'app-question-display',
   templateUrl: './question-display.component.html',
-  styleUrls: ['./question-display.component.css']
+  styleUrls: ['./question-display.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class QuestionDisplayComponent implements OnInit {
+export class QuestionDisplayComponent  {
 
   constructor(private questionService:QuestionsService) { }
 
-  displayedQuestion:Question;
-  ngOnInit() {
-    this.questionService.questionDisplayedSubject.subscribe(question=>{
-      this.displayedQuestion = question;
-    });
-    
-  }
-
+  displayedQuestion$ = this.questionService.questionDisplayedSubject;
 }

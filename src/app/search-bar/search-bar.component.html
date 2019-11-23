@@ -1,8 +1,4 @@
-<div
-  fxLayoutGap="10px"
-  fxLayout="row"
-  fxFlex
-  fxLayoutAlign="center center">
+<div fxLayoutGap="10px" fxLayout="row" fxFlex fxLayoutAlign="center center">
   <mat-form-field class="example-full-width">
     <input
       matInput
@@ -12,8 +8,14 @@
     />
   </mat-form-field>
 
-  <button *ngIf="!isLoading" (click)="onSearchClick()" mat-raised-button [disabled]="!searchString" color="primary">
+  <button
+    *ngIf="!(isLoading$ | async)"
+    (click)="onSearchClick()"
+    mat-raised-button
+    [disabled]="!searchString"
+    color="primary"
+  >
     Search
   </button>
-  <mat-spinner id="search-spinner" *ngIf="isLoading"></mat-spinner>
+  <mat-spinner id="search-spinner" *ngIf="isLoading$ | async"></mat-spinner>
 </div>

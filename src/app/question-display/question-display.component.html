@@ -1,8 +1,8 @@
 <div class="display-question" fxAlign="center center">
-  <ng-container *ngIf="displayedQuestion">
+  <ng-container *ngIf="displayedQuestion$ | async as displayedQuestion">
     <p>View Count:{{ displayedQuestion.viewCount }}</p>
     <p>Score:{{ displayedQuestion.score }}</p>
-    <p fxHide.sm fxHide.xs >
+    <p fxHide.sm fxHide.xs>
       Link:<a target="_blank" [href]="displayedQuestion.link">{{
         displayedQuestion.link
       }}</a>

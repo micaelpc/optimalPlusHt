@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { Subject } from "rxjs";
+import { Subject, EMPTY } from "rxjs";
 import { Question } from "../model/question";
 @Injectable({
   providedIn: "root"
@@ -11,17 +11,29 @@ export class QuestionsService {
   questionSubject: Subject<Array<Question>> = new Subject<Array<Question>>();
   questionDisplayedSubject: Subject<Question> = new Subject<Question>();
   isLoadingSubject: Subject<boolean> = new Subject<boolean>();
+
   getQuestionsRelated(tag: string) {
     if (tag) {
       this.isLoadingSubject.next(true);
       const getUrl = this.getGETUrl(tag);
       this.httpClient
         .get(getUrl)
-        .pipe(map((response: any) => response.items))
+        .pipe(
+          map((response: any) => response.items),
+          map(questions =>
+            (questions as Array<any>).map(question => {
+              return new Question(
+                question.title,
+                question.view_count,
+                question.score,
+                question.link
+              );
+            })
+          )
+        )
         .subscribe(
           questions => {
-            const convertedQuestion = this.getModelledQuestions(questions);
-            this.questionSubject.next(convertedQuestion);
+            this.questionSubject.next(questions);
             this.questionDisplayedSubject.next();
             this.isLoadingSubject.next(false);
           },
@@ -30,6 +42,7 @@ export class QuestionsService {
             this.questionDisplayedSubject.next();
             this.isLoadingSubject.next(false);
             console.log(err);
+            return EMPTY;
           }
         );
     }
